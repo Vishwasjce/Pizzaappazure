@@ -158,7 +158,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAngularClient", policyBuilder =>
     {
         policyBuilder
-            .WithOrigins("https://pizzaorderclient-b2ddeaduhfcvereu.canadacentral-01.azurewebsites.net")
+            .WithOrigins("https://pizzaorderclient-b2ddeaduhfcvereu.canadacentral-01.azurewebsites.net", "http://localhost:4200")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -207,6 +207,7 @@ app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "1.0");
     options.SwaggerEndpoint("/swagger/v2/swagger.json", "2.0");
+    options.RoutePrefix = String.Empty;
 });
 
 app.UseRouting();
