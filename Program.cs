@@ -155,14 +155,14 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAngularClient", policyBuilder =>
+    options.AddPolicy("AllowAll", policy =>
     {
-        policyBuilder
-            .WithOrigins("https://pizzaorderclient-b2ddeaduhfcvereu.canadacentral-01.azurewebsites.net", "http://localhost:4200")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
     });
 });
+
+
+
 
 
 //Configure Authentication
@@ -211,7 +211,7 @@ app.UseSwaggerUI(options =>
 });
 
 app.UseRouting();
-app.UseCors("AllowAngularClient");
+app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();
